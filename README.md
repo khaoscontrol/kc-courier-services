@@ -76,7 +76,7 @@ Name | Type | Required | Description
 **InvoiceDate** | [DateTime](#datetime) | Yes | The date the invoice was created
 **OrderDate** | [DataTime](#datetime) | | The date the order was created
 **SOrderCode** | String | | The sales order code that the invoice is associated to
-**SOrderID** | String | The unique ID of the Sales Order that the invoice is associated to
+**SOrderID** | String | | The unique ID of the Sales Order that the invoice is associated to
 **AssociatedRef** | String | | This is the Associated Ref that represent a web order number / external system order number
 **DeliveryDate** | [DateTime](#datetime) | | The date which has been specified for delivery within Khaos Control
 **RequiredDate** | [DateTime](#datetime) | | The required by date specified within Khaos Control
