@@ -2,10 +2,11 @@
 
 Welcome to the **beta version** of the Khaos Control Courier Services.
 
-<!-- MarkdownTOC -->
+<!-- TOC -->
 
+- [Khaos Control Courier Services](#khaos-control-courier-services)
 - [Getting Started](#getting-started)
-- [Types &amp; Objects](#types--objects)
+- [Types &amp; Objects](#types-amp-objects)
    - [Types](#types)
       - [AddressType](#addresstype)
       - [DateTime](#datetime)
@@ -19,13 +20,14 @@ Welcome to the **beta version** of the Khaos Control Courier Services.
    - [Receiving & Responding to server calls](#receiving--responding-to-server-calls)
       - [CourierExportData](#courierexportdata)
          - [Properties](#properties)
+         - [XML Request](#xml-request)
+         - [JSON Request](#json-request)
+         - [Responses](#responses)
+         - [Properties](#properties-1)
          - [XML Response](#xml-response)
          - [JSON Response](#json-response)
-      - [CourierImportData](#courierimportdata)
-         - [Properties](#properties-1)
-         - [XML Response](#xml-response-1)
 
-<!-- /MarkdownTOC -->
+<!-- /TOC -->
 
 # Getting Started
 
@@ -76,7 +78,7 @@ Name | Type | Required | Description
 **InvoiceDate** | [DateTime](#datetime) | Yes | The date the invoice was created
 **OrderDate** | [DataTime](#datetime) | | The date the order was created
 **SOrderCode** | String | | The sales order code that the invoice is associated to
-**SOrderID** | String | | The unique ID of the Sales Order that the invoice is associated to
+**SOrderID** | String | The unique ID of the Sales Order that the invoice is associated to
 **AssociatedRef** | String | | This is the Associated Ref that represent a web order number / external system order number
 **DeliveryDate** | [DateTime](#datetime) | | The date which has been specified for delivery within Khaos Control
 **RequiredDate** | [DateTime](#datetime) | | The required by date specified within Khaos Control
@@ -215,7 +217,7 @@ Name | Type | Required | Description
 **WeightScale** | Double | | The unit used to convert the dimensions of the item, e.g. dividing by 1 will convert the standard cm unit into metres
 **DimensionScale** | Double | | The unit used to convert the weight of the item, e.g. diving by 1 will convert the standard grams unit into kilograms
 
-#### XML Response
+#### XML Request
 
 ```xml
 <CourierExportData>
@@ -446,7 +448,7 @@ Name | Type | Required | Description
 </CourierExportData>
 ```
 
-#### JSON Response
+#### JSON Request
 
 ```json
 {
@@ -670,16 +672,15 @@ Name | Type | Required | Description
    "DimensionScale": 0.0
 }
 ```
+#### Responses
 
-### CourierImportData
-
-This is the object needed for importing responses from the Courier, the URL for importing is defined via the *Courier Settings* in Khaos Control
+Once you have parsed the request you will need to respond back to Khaos Control with information about each consignment that the items are assigned to. This information will come from your courier services, such as DHL for example.
 
 #### Properties
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-**Items** | Array[[CourierImportDataItem](#courierimportdataitem)] | Yes | The items to import
+**Items** | Array[[CourierImportDataItem](#courierimportdataitem)] | Yes | The items to respond with
 
 #### XML Response
 
@@ -703,6 +704,8 @@ Name | Type | Required | Description
     </Items>
 </CourierImportData>
 ```
+
+#### JSON Response
 
 ```json
 {
