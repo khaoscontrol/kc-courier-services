@@ -8,7 +8,6 @@ Welcome to the **beta version** of the Khaos Control Courier Services.
 - [Getting Started](#getting-started)
 - [Types &amp; Objects](#types-amp-objects)
    - [Types](#types)
-      - [AddressType](#addresstype)
       - [DateTime](#datetime)
    - [Objects](#objects)
       - [CourierExportDataItem](#courierexportdataitem)
@@ -39,18 +38,9 @@ When we push data to you, you must ensure that you give a valid response code in
 + 400 (Bad request or bad data sent)
 + 500 (Error)
 
-Error codes will make the API try again, therefore if you do not respond with a 200(OK) you experience duplicate data.
-
 # Types &amp; Objects
 
 ## Types
-
-### AddressType
-
-The ``AddressType`` type is represented as an ``integer`` and will be one of the following:
-
-+ 1 (Invoice)
-+ 2 (Delivery)
 
 ### DateTime
 
@@ -67,31 +57,31 @@ The ``CourierExportDataItem`` object is made up of the following properties:
 Name | Type | Required | Description
 --- | --- | --- | ---
 **Items** | [Item](#item) | Yes | The items of the order
-**Boxes** | [Box](#box) | Yes | The information of the parcels/boxes the item have been put into
+**Boxes** | [Box](#box) | No | The information of the parcels/boxes the item have been put into
 **InvoiceAddress** | [CourierAddress](#courieraddress) | Yes | The invoice/billing address of the order
 **DeliveryAddress** | [CourierAddress](#courieraddress) | Yes | The delivery address of the order
-**InvoiceID** | String | Yes | This is the Invoice ID which uniquely identifies the invoice within Khaos Control
+**InvoiceID** | String | Yes | This uniquely identifies the invoice, and will not change. This is not visible to customers.
 **CompanyCode** | String | | The company code within Khaos Control that is associated to the customer
 **TaxRef** | String | | The tax reference of the customer
 **ECCompany** | Boolean | | This specifies if the company is a European Commission company
-**InvoiceCode** | String | Yes | The Invoice Code which is associated to this order
-**InvoiceDate** | [DateTime](#datetime) | Yes | The date the invoice was created
+**InvoiceCode** | String | Yes | This is displayed on customer facing documents and can change
+**InvoiceDate** | [DateTime](#datetime) | Yes | This is the financial date of when the invoice was printed
 **OrderDate** | [DataTime](#datetime) | | The date the order was created
-**SOrderCode** | String | | The sales order code that the invoice is associated to
+**SOrderCode** | String | | The sales order code that the invoice is associated to. Multiple invoices can be associated to the same Sales Order code
 **SOrderID** | String | The unique ID of the Sales Order that the invoice is associated to
 **AssociatedRef** | String | | This is the Associated Ref that represent a web order number / external system order number
 **DeliveryDate** | [DateTime](#datetime) | | The date which has been specified for delivery within Khaos Control
 **RequiredDate** | [DateTime](#datetime) | | The required by date specified within Khaos Control
 **ItemTotal** | Double | Yes | The total amount of the invoice in the order's currency
 **ItemTaxTotal** | Double | Yes | This is the total tax of the invoice, in the order's currency
-**DeliveryTotal** | Double | Yes | This is the total delivery cost chartged on the invoice, in the order's currency
+**DeliveryTotal** | Double | Yes | This is the total delivery cost charged on the invoice, in the order's currency
 **DeliveryTaxTotal** | Double | Yes | This is the delivery tax total of the invoice, in the order's currency
 **Weight** | Double | Yes | The calculated weight
 **CurrencyCode** | String | Yes | This is the code of the order's currency
 **CurrencyName** | String | | This is the name of the order's currency
 **CurrencyID** | String  | Yes | This is the ID of the order's currency
-**InvoiceNote** | String | | The note associated to the invoice
-**PickingListNote** | String | | The poicking note associated to the invoice
+**InvoiceNote** | String | | The note associated to the invoice, this is customer facing
+**PickingListNote** | String | | The picking note associated to the invoice
 **ChannelID** | String | | The is the ID of the channel from where the invoice has been generated
 
 ### Item
@@ -109,12 +99,12 @@ Name | Type | Required | Description
 **NetTotal** | Double | Yes | This is the net total of the item line, taking *QtyUser* into account
 **StockCode** | String | | This is the code identifier that is associated to the item
 **StockType** | String | | This is the category/type of the item
-**ManufCounry** | String | | This is the manufacturer's country name
+**ManufCountry** | String | | This is the manufacturer's country name
 **ManufCountryCode2** | String | | This is the country code for the manufacturer in ISO 3116-2 format
 **ManufCountryCode3** | String | | This is the country code for the manufacturer in ISO 3116-3 format
 **IntrastatCode** | String | | This is the Invoice ID associated to the item
-**HermonisationCode** | String | | This is the Hermonisation Code defined within Khaos Control
-**HermonisationDesc** | string | | This is the Hermonisation Description defined within Khaos Control
+**HarmonisationCode** | String | | This is the Harmonisation Code defined within Khaos Control (see https://en.wikipedia.org/wiki/Harmonized_System)
+**HarmonisationDesc** | string | | This is the Harmonisation Description defined within Khaos Control (see https://en.wikipedia.org/wiki/Harmonized_System)
 **ImportRef** | String | | This is a unique import reference generated within Khaos Control
 **Weight** | Double | Yes | This is the calculated weight of the item within Khaos Control
 
@@ -152,8 +142,8 @@ Name | Type | Required | Description
 **ManufCountryCode2** | String | | This is the country code of the manufacturer in an ISO 3166-2 format
 **ManufCountryCode3** | String | | This is the country code of the manufacturer in an ISO 3166-3 format
 **IntrastatCode** | String | | This is the invoice ID associated to the item
-**HermonisationCode** | String | | This is the Hermonisation code that identifies uniquely a box item
-**HermonisationDescription** | String | | This is the Hermonisation description that uniquely identifies a box item
+**HarmonisationCode** | String | | This is the Harmonisation code that identifies uniquely a box item (see https://en.wikipedia.org/wiki/Harmonized_System)
+**HarmonisationDescription** | String | | This is the Harmonisation description that uniquely identifies a box item (see https://en.wikipedia.org/wiki/Harmonized_System)
 **Weight** | Double | | This is the calculated weight of the item
 
 ### CourierAddress
@@ -162,7 +152,7 @@ The ``CourierAddress`` object is made up of the following properties:
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-**CourierNote** | String | | The note to the courier
+**CourierNote** | String | | The note to the courier, could include special instructions on where to leave the package
 **CompanyName** | String | Yes | The name of the company/building
 **Address1** | String | Yes | The first line of the address
 **Address2** | String | Yes | The second line of the address
@@ -172,12 +162,11 @@ Name | Type | Required | Description
 **Postcode** | String | Yes | The postcode associated to the address
 **AddrTel** | String | | The telephone number associated to the address
 **AddrEmail** | String | | The email address associated to the address
-**AddrType** | [AddressType](#addresstype) | | This is the address type from within Khaos Control.
 **CountryID** | Integer | Yes | The ID of the country associated to the address
 **CountryName** | String | Yes | The country associated to the address in a named format
 **CountryCode2** | String | | The code of the country associated to the address in an ISO 3166-2 format
 **CountryCode3** | String | | The code of the country associated to the address in an ISO 3166-3 format
-**EUNumber** | Boolean | |
+**EUMember** | Boolean | |
 **Title** | String | | The title of the recipient associated to the address
 **Forename** | String | Yes | The forename/first name of the recipient associated to the address
 **Surname** | String | Yes | The surname/last name of the recipient associated to the address
@@ -192,13 +181,13 @@ The ``CourierImportDataItem`` object is made up of the following properties:
 Name | Type | Required | Description
 --- | --- | --- | ---
 **InvoiceID** | String | Yes | The unique invoice ID associated to the imported ``CourierExportDataItem``
-**ItemID** | String | | 
+**ItemID** | String | | This is for distinguishing between multiple boxes
 **IsSuccess** | Boolean | Yes | The status of whether the import was successful or not, in a boolean value
 **ConsignmentRef** | String | | The consignment reference generated from the import
 **TrackingNo** | String | | The tracking number generated for the imported item
 **Errors** | String | Yes | This is an aggregate type of error messages in case the shipment failed
-**LabelURL** | String | | The URL associated to the import, showing the label generated
-**RawLabelData** | BytesArray | | The image or PDF associated to the import representing the label
+**LabelURL** | String | | The URL associated to the import, showing the label generated (not needed if ``RawLabelData`` is provided)
+**RawLabelData** | BytesArray | | The image or PDF associated to the import representing the label (not needed if ``LabelURL`` is provided)
 
 ## Receiving & Responding to server calls
 
