@@ -187,7 +187,7 @@ Name | Type | Required | Description
 **TrackingNo** | String | | The tracking number generated for the imported item
 **Errors** | String | Yes | This is an aggregate type of error messages in case the shipment failed
 **LabelURL** | String | | The URL associated to the import, showing the label generated (not needed if ``RawLabelData`` is provided)
-**RawLabelData** | BytesArray | | The image or PDF associated to the import representing the label (not needed if ``LabelURL`` is provided)
+**RawLabelData** | String (Hex) | | The image or PDF associated to the import representing the label (not needed if ``LabelURL`` is provided). This must be provided as a hex string beginning with ``0xF``. The hex string must be generated from the byte array that is passed to you from Khaos.
 
 ## Receiving & Responding to server calls
 
