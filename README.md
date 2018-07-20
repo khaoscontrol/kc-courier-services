@@ -6,6 +6,7 @@ Welcome to the **beta version** of the Khaos Control Courier Services.
 
 - [Khaos Control Courier Services](#khaos-control-courier-services)
 - [Getting Started](#getting-started)
+- [Security](#security)
 - [Types &amp; Objects](#types-amp-objects)
    - [Types](#types)
       - [DateTime](#datetime)
@@ -37,6 +38,10 @@ When we push data to you, you must ensure that you give a valid response code in
 + 200 (OK)
 + 400 (Bad request or bad data sent)
 + 500 (Error)
+
+# Security
+
+It is advised that all endpoints are secured via HTTPS. The API also supports HTTP Basic Authentication for all operations, it is recommended that these values are validated accordingly. Basic Auth can be setup within the KC application/channel screens of KCC.
 
 # Types &amp; Objects
 
