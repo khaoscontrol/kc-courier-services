@@ -191,7 +191,7 @@ Name | Type | Required | Description
 **ConsignmentRef** | String | | The consignment reference generated from the import
 **TrackingNo** | String | | The tracking number generated for the imported item
 **Errors** | String | Yes | This is an aggregate type of error messages in case the shipment failed
-**LabelURL** | String | | The URL associated to the import, showing the label generated (not needed if ``RawLabelData`` is provided). If HTML is provided, an encoding of ``UTF-16LE`` is required;
+**LabelURL** | String | | The URL associated to the import, showing the label generated (not needed if ``RawLabelData`` is provided). If HTML is provided, an encoding of ``UTF-16LE`` is required.
 **RawLabelData** | String (Hex) | | For image or PDF formats only, this not needed if ``LabelURL`` is provided. This must be provided as a hex string of data beginning with ``0x``. The hex string must be generated from the byte array that is passed to you from Khaos.
 
 ## Receiving & Responding to server calls
