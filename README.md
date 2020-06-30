@@ -81,7 +81,7 @@ Name | Type | Required | Description
 **ItemTaxTotal** | Double | Yes | This is the total tax of the invoice, in the order's currency
 **DeliveryTotal** | Double | Yes | This is the total delivery cost charged on the invoice, in the order's currency
 **DeliveryTaxTotal** | Double | Yes | This is the delivery tax total of the invoice, in the order's currency
-**Weight** | Double | Yes | The calculated weight
+**Weight** | Double | Yes | The calculated weight in kilograms.
 **CurrencyCode** | String | Yes | This is the code of the order's currency
 **CurrencyName** | String | | This is the name of the order's currency
 **CurrencyID** | String  | Yes | This is the ID of the order's currency
@@ -111,7 +111,7 @@ Name | Type | Required | Description
 **HarmonisationCode** | String | | This is the Harmonisation Code defined within Khaos Control (see https://en.wikipedia.org/wiki/Harmonized_System)
 **HarmonisationDesc** | string | | This is the Harmonisation Description defined within Khaos Control (see https://en.wikipedia.org/wiki/Harmonized_System)
 **ImportRef** | String | | This is a unique import reference generated within Khaos Control
-**Weight** | Double | Yes | This is the calculated weight of the item within Khaos Control
+**Weight** | Double | Yes | This is the calculated weight of the item within Khaos Control in kilograms.
 
 ### Box
 
@@ -207,7 +207,7 @@ Name | Type | Required | Description
 **ServiceCode** | String | Yes | 
 **Items** | Array[[CourierExportDataItem](#courierexportdataitem)] | Yes | The items exported
 **IncludePackaging** | Boolean | Yes | Whether the items include packaging or not
-**AverageWeight** | Double | Yes | The average weight of each item
+**AverageWeight** | Double | Yes | The average weight of each item in kilograms.
 **WeightScale** | Double | | The unit used to convert the dimensions of the item, e.g. dividing by 1 will convert the standard cm unit into metres
 **DimensionScale** | Double | | The unit used to convert the weight of the item, e.g. diving by 1 will convert the standard grams unit into kilograms
 
