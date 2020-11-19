@@ -112,6 +112,7 @@ Name | Type | Required | Description
 **HarmonisationDesc** | string | | This is the Harmonisation Description defined within Khaos Control (see https://en.wikipedia.org/wiki/Harmonized_System)
 **ImportRef** | String | | This is a unique import reference generated within Khaos Control
 **Weight** | Double | Yes | This is the calculated weight of the item within Khaos Control in kilograms.
+**PackDetails** | Integer | | Exported to specify that this item line is either a pack parent (1), or a pack child (2), or not part of a pack (0).
 
 ### Box
 
@@ -178,7 +179,7 @@ Name | Type | Required | Description
 **CtTel** | String | | The contact telephone number associated to the recipient
 **CtTel2** | String | | An alternative telephone number associated to the recipient
 **CtEmail** | String | | The email address associated to the recipient
-
+**Organisation** | String | |The name of the organisation at that address (e.g. a child company)
 ### CourierImportDataItem
 
 The ``CourierImportDataItem`` object is made up of the following properties:
