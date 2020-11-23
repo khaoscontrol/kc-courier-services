@@ -87,7 +87,8 @@ Name | Type | Required | Description
 **CurrencyID** | String  | Yes | This is the ID of the order's currency
 **InvoiceNote** | String | | The note associated to the invoice, this is customer facing
 **PickingListNote** | String | | The picking note associated to the invoice
-**ChannelID** | String | | The is the ID of the channel from where the invoice has been generated
+**ChannelID** | String | | This is the ID of the channel from where the invoice has been generated
+**HideChildItems** | Boolean | | Whether to hide pack child stock items when sending shipment information to the courier.
 
 ### Item
 
@@ -151,6 +152,7 @@ Name | Type | Required | Description
 **HarmonisationCode** | String | | This is the Harmonisation code that identifies uniquely a box item (see https://en.wikipedia.org/wiki/Harmonized_System)
 **HarmonisationDescription** | String | | This is the Harmonisation description that uniquely identifies a box item (see https://en.wikipedia.org/wiki/Harmonized_System)
 **Weight** | Double | | This is the calculated weight of the item
+**PackDetails** | Integer | | Exported to specify that this item line is either a pack parent (1), or a pack child (2), or not part of a pack (0).
 
 ### CourierAddress
 
@@ -238,6 +240,7 @@ Name | Type | Required | Description
                     <HarmonisationDesc>1</HarmonisationDesc>
                     <ImportRef></ImportRef>
                     <Weight>120</Weight>
+                    <PackDetails>0</PackDetails>
                 </Item>
                 <Item>
                     <ItemID>BHXAV403000M3EM</ItemID>
@@ -257,6 +260,7 @@ Name | Type | Required | Description
                     <HarmonisationDesc></HarmonisationDesc>
                     <ImportRef></ImportRef>
                     <Weight>50</Weight>
+                    <PackDetails>0</PackDetails>
                 </Item>
             </Items>
             <Boxes>
@@ -279,6 +283,7 @@ Name | Type | Required | Description
                             <HarmonisationCode>0000000001</HarmonisationCode>
                             <HarmonisationDesc>1</HarmonisationDesc>
                             <Weight>120</Weight>
+                            <PackDetails>0</PackDetails>
                         </BoxItem>
                         <BoxItem>
                             <ItemID>2374</ItemID>
@@ -297,6 +302,7 @@ Name | Type | Required | Description
                             <HarmonisationCode></HarmonisationCode>
                             <HarmonisationDesc></HarmonisationDesc>
                             <Weight>50</Weight>
+                            <PackDetails>0</PackDetails>
                         </BoxItem>
                     </items>
                     <ItemID>1447</ItemID>
@@ -328,6 +334,7 @@ Name | Type | Required | Description
                             <HarmonisationCode></HarmonisationCode>
                             <HarmonisationDesc></HarmonisationDesc>
                             <Weight>50</Weight>
+                            <PackDetails>0</PackDetails>
                         </BoxItem>
                         <BoxItem>
                             <ItemID>2376</ItemID>
@@ -346,6 +353,7 @@ Name | Type | Required | Description
                             <HarmonisationCode>0000000001</HarmonisationCode>
                             <HarmonisationDesc>1</HarmonisationDesc>
                             <Weight>120</Weight>
+                            <PackDetails>0</PackDetails>
                         </BoxItem>
                     </items>
                     <ItemID>1448</ItemID>
@@ -361,7 +369,7 @@ Name | Type | Required | Description
             </Boxes>
             <InvoiceAddress>
                 <CourierNote></CourierNote>
-                <CompanyName></CompanyName>
+                <CompanyName>Test Company</CompanyName>
                 <Address1>Test Order</Address1>
                 <Address2>18</Address2>
                 <Locality></Locality>
@@ -384,10 +392,11 @@ Name | Type | Required | Description
                 <CtTel></CtTel>
                 <CtTel2></CtTel2>
                 <CtEmail>psilman@keystonesoftware.co.uk</CtEmail>
+                <Organisation>Silman's Selected Sellers</Organisation>
             </InvoiceAddress>
             <DeliveryAddress>
                 <CourierNote></CourierNote>
-                <CompanyName></CompanyName>
+                <CompanyName>Test Company</CompanyName>
                 <Address1>Test Order</Address1>
                 <Address2>18</Address2>
                 <Locality></Locality>
@@ -410,6 +419,7 @@ Name | Type | Required | Description
                 <CtTel></CtTel>
                 <CtTel2></CtTel2>
                 <CtEmail>psilman@keystonesoftware.co.uk</CtEmail>
+                <Organisation>Silman's Selected Sellers</Organisation>
             </DeliveryAddress>
             <InvoiceID>BHXAV402000M3EM</InvoiceID>
             <CompanyCode>168202</CompanyCode>
@@ -434,6 +444,7 @@ Name | Type | Required | Description
             <InvoiceNote>All our invoices are subject to the Late Payments of Commercial Debts Act 1998 and late Payment of Commercial Debts Regulations 2002.</InvoiceNote>
             <PickingListNote>Thank you for your valued custom</PickingListNote>
             <ChannelID>0</ChannelID>
+            <HideChildItems>false</HideChildItems>
         </CourierExportDataItem>
     </Items>
     <IncludePackaging>False</IncludePackaging>
@@ -466,7 +477,8 @@ Name | Type | Required | Description
             "HarmonisationCode": "0000000001",
             "HarmonisationDesc": "1",
             "ImportRef": "",
-            "Weight": 120.0
+            "Weight": 120.0,
+            "PackDetails": 0
          },
          {
             "ItemID": "BHXAV403000M3EM",
@@ -485,7 +497,8 @@ Name | Type | Required | Description
             "HarmonisationCode": "",
             "HarmonisationDesc": "",
             "ImportRef": "",
-            "Weight": 50.0
+            "Weight": 50.0,
+            "PackDetails": 0
          }
       ],
       "Boxes": [{
@@ -505,7 +518,8 @@ Name | Type | Required | Description
                   "IntrastatCode": "52093900",
                   "HarmonisationCode": "0000000001",
                   "HarmonisationDesc": "1",
-                  "Weight": 120.0
+                  "Weight": 120.0,
+                  "PackDetails": 0
                },
                {
                   "ItemID": "2374",
@@ -523,7 +537,8 @@ Name | Type | Required | Description
                   "IntrastatCode": "",
                   "HarmonisationCode": "",
                   "HarmonisationDesc": "",
-                  "Weight": 50.0
+                  "Weight": 50.0,
+                  "PackDetails": 0
                }
             ],
             "ItemID": "1447",
@@ -553,7 +568,8 @@ Name | Type | Required | Description
                   "IntrastatCode": "",
                   "HarmonisationCode": "",
                   "HarmonisationDesc": "",
-                  "Weight": 50.0
+                  "Weight": 50.0,
+                  "PackDetails": 0
                },
                {
                   "ItemID": "2376",
@@ -571,7 +587,8 @@ Name | Type | Required | Description
                   "IntrastatCode": "52093900",
                   "HarmonisationCode": "0000000001",
                   "HarmonisationDesc": "1",
-                  "Weight": 120.0
+                  "Weight": 120.0,
+                  "PackDetails": 0
                }
             ],
             "ItemID": "1448",
@@ -587,7 +604,7 @@ Name | Type | Required | Description
       ],
       "InvoiceAddress": {
          "CourierNote": "",
-         "CompanyName": "",
+         "CompanyName": "Test Company",
          "Address1": "Test Order",
          "Address2": "18",
          "Locality": "",
@@ -609,11 +626,12 @@ Name | Type | Required | Description
          "FullName": "Test Test",
          "CtTel": "",
          "CtTel2": "",
-         "CtEmail": "psilman@keystonesoftware.co.uk"
+         "CtEmail": "psilman@keystonesoftware.co.uk",
+         "Organisation": "Silman's Selected Sellers"
       },
       "DeliveryAddress": {
          "CourierNote": "",
-         "CompanyName": "",
+         "CompanyName": "Test Company",
          "Address1": "Test Order",
          "Address2": "18",
          "Locality": "",
@@ -635,7 +653,8 @@ Name | Type | Required | Description
          "FullName": "Test Test",
          "CtTel": "",
          "CtTel2": "",
-         "CtEmail": "psilman@keystonesoftware.co.uk"
+         "CtEmail": "psilman@keystonesoftware.co.uk",
+         "Organisation": "Silman's Selected Sellers"
       },
       "InvoiceID": "BHXAV402000M3EM",
       "CompanyCode": "168202",
@@ -659,7 +678,8 @@ Name | Type | Required | Description
       "CurrencyID": 1,
       "InvoiceNote": "All our invoices are subject to the Late Payments of Commercial Debts Act 1998 and late Payment of Commercial Debts Regulations 2002.",
       "PickingListNote": "Thank you for your valued custom",
-      "ChannelID": "0"
+      "ChannelID": "0",
+      "HideChildItems": false
    }],
    "IncludePackaging": false,
    "AverageWeight": 0.0,
