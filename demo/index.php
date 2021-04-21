@@ -9,29 +9,36 @@
          $controller = $page[0];
          $action = @$page[1];
          $subaction = $page[2];
-         if($action == "shipments")
+         if($action == "shipping")
             $action = "html";
          switch($controller) {
             case "user":
                $json = array("result" => "success");
             break; 
-            case "shipments":
+            case "shipping":
             case "export":
                $_data = file_get_contents('php://input');
+               // debug
+               $file = fopen("post.txt", 'w');
+                fwrite($file, json_encode($_GET).'\r\n');
+               fwrite($file, $_data);
+               fclose($file);
                $data = mb_convert_encoding(
                   $_data,
                   "HTML-ENTITIES",
                   "UTF-8"
                );
-               // debug
-               $data = (array) json_decode($_data, true);
+               $data = (array) json_decode($data, true);
                $json = array(
                   "Items" => array()
                );
                $chars = "abcdefghijklmnopqrstuvwxyz";
                foreach($data["Items"] as $consignment) {
                   $consignment = (array) $consignment;
-                  foreach($consignment["Items"] as $item) {
+                  $boxes = sizeOf($consignment["Boxes"]);
+                  if(!$boxes)
+                     $boxes = 1;
+                  for($i = 0; $i < $boxes; $i++) {
                      // response
                      $ref = "";
                      $track = "";
@@ -40,7 +47,6 @@
                         $ref .= $chars[rand(0, $x)]; // rand ref
                         $track .= $chars[rand(0, $x)];
                      }
-                     $item = (array) $item;
                      $export = new Export();
                      $output = $export->create($action, $subaction, array(
                         "ConsignmentRef" => $ref,
@@ -57,7 +63,7 @@
                      ));
                      array_push($json["Items"], array_merge((array) $output, array(
                         "InvoiceID" => $consignment['InvoiceID'],
-                        "ItemID" => $item['ItemID'],
+                        "ItemID" => "box".$i.'_'.$consignment['InvoiceID'],
                         "IsSuccess" => true,
                         "ConsignmentRef" => $ref.time(),
                         "TrackingNo" => strtoupper($track).time(),
@@ -81,6 +87,9 @@
    }
    if(isset($json)) {
       echo json_encode($json);
+      $file = fopen("return.txt", 'w');
+      fwrite($file, json_encode($json));
+      fclose($file);
    }
    exit;
 ?>

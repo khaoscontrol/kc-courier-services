@@ -17,12 +17,12 @@
                switch($type) {
                   case "url":
                     return array(
-                        "LabelURL" => "https://playground.courier.khaoscloud.com/samples/images/sample.jpg"
+                        "LabelURL" => "https://playground.courier.khaoscloud.com/samples/images/sample_url.jpg"
                      );
                   break;
                   case "data":
                      return array(
-                        "RawLabelData" => $this->fileToHex('samples/images/sample.jpg')
+                        "RawLabelData" => $this->fileToHex('samples/images/sample_data.jpg')
                      );
                   break;
                }
@@ -31,12 +31,12 @@
                switch($type) {
                   case "url":
                   return array(
-                        "LabelURL" => "https://playground.courier.khaoscloud.com/samples/images/sample.gif"
+                        "LabelURL" => "https://playground.courier.khaoscloud.com/samples/images/sample_url.gif"
                      );
                   break;
                   case "data":
                      return array(
-                        "RawLabelData" => $this->fileToHex('samples/images/sample.jpg')
+                        "RawLabelData" => $this->fileToHex('samples/images/sample_data.gif')
                      );
                   break;
                }
@@ -45,12 +45,12 @@
                switch($type) {
                   case "url":
                   return array(
-                        "LabelURL" => "https://playground.courier.khaoscloud.com/samples/images/sample.png"
+                        "LabelURL" => "https://playground.courier.khaoscloud.com/samples/images/sample_url.png"
                      );
                   break;
                   case "data":
                      return array(
-                        "RawLabelData" => $this->fileToHex('samples/images/sample.jpg')
+                        "RawLabelData" => $this->fileToHex('samples/images/sample_data.png')
                      );
                   break;
                }
@@ -64,23 +64,28 @@
                   break;
                   case "data":
                      return array(
-                        "RawLabelData" => $this->fileToHex('samples/images/sample.jpg')
+                        "RawLabelData" => $this->fileToHex('samples/pdf/sample.pdf')
                      );
                   break;
                }
             break;
             case "html":
+               $file_name = 'label'.time().'.html';
+                  $_html = file_get_contents("samples/html/sample.html");
+                  if($data && is_array($data)) {
+                     foreach($data as $key => $value)
+                        $_html = str_replace('['.strtoupper($key).']', $value, $_html);
+                  }
+                  $this->createFile($file_name, mb_convert_encoding($_html, 'UTF-16LE', 'UTF-8'));
                switch($type) {
-                  case "url":
-                     $file_name = 'label'.time().'.html';
-                     $_html = file_get_contents("samples/html/sample.html");
-                     if($data && is_array($data)) {
-                        foreach($data as $key => $value)
-                           $_html = str_replace('['.strtoupper($key).']', $value, $_html);
-                     }
-                     $this->createFile($file_name, mb_convert_encoding($_html, 'UTF-16LE', 'UTF-8'));
+                  case "url":   
                      return array(
                         "LabelURL" => "https://playground.courier.khaoscloud.com/cache/".$file_name
+                     );
+                  break;
+                  case 'data':
+                     return array(
+                        "RawLabelData" => $this->fileToHex('cache/'.$file_name)
                      );
                   break;
                }

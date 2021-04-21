@@ -62,7 +62,7 @@ The ``CourierExportDataItem`` object is made up of the following properties:
 Name | Type | Required | Description
 --- | --- | --- | ---
 **Items** | [Item](#item) | Yes | The items of the order
-**Boxes** | [Box](#box) | No | The information of the parcels/boxes the item have been put into
+**Boxes** | [Box](#box) | No | If more than one box is required to be shipped, this will contain the information for each box. NOTE: If populated the response is expected to contain the ItemID property that matches the BoxItem ItemID property within ``CourierImportDataItem``
 **InvoiceAddress** | [CourierAddress](#courieraddress) | Yes | The invoice/billing address of the order
 **DeliveryAddress** | [CourierAddress](#courieraddress) | Yes | The delivery address of the order
 **InvoiceID** | String | Yes | This uniquely identifies the invoice, and will not change. This is not visible to customers.
@@ -122,7 +122,7 @@ The ``Box`` object is made up of the following properties:
 Name | Type | Requried | Description
 --- | --- | --- | ---
 **BoxItem** | [BoxItem](#boxitem) | Yes | This is an aggregated type of ``BoxItem`` items
-**ItemID** | String | | This is the unique identifier of the box
+**ItemID** | String | Yes | This is the unique identifier of the box
 **BoxNote** | String | | This is the note that provides additional information for the box
 **BoxNumber** | Integer | | This is the number that identifies the box when multiple boxes are part of the same invoice
 **BoxWidth** | Double | | This is the width of the box
@@ -189,7 +189,7 @@ The ``CourierImportDataItem`` object is made up of the following properties:
 Name | Type | Required | Description
 --- | --- | --- | ---
 **InvoiceID** | String | Yes | The unique invoice ID associated to the imported ``CourierExportDataItem``
-**ItemID** | String | | This is for distinguishing between multiple boxes
+**ItemID** | String | | This is for distinguishing between multiple boxes. NOTE: If the request contains a populated Boxes property, you must respond with the BoxItem ItemID property.
 **IsSuccess** | Boolean | Yes | The status of whether the import was successful or not, in a boolean value
 **ConsignmentRef** | String | | The consignment reference generated from the import
 **TrackingNo** | String | | The tracking number generated for the imported item
