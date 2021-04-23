@@ -191,7 +191,7 @@ Name | Type | Required | Description
 **InvoiceID** | String | Yes | The unique invoice ID associated to the imported ``CourierExportDataItem``
 **ItemID** | String | | This is for distinguishing between multiple boxes. NOTE: If the request contains a populated Boxes property, you must respond with the BoxItem ItemID property.
 **IsSuccess** | Boolean | Yes | The status of whether the import was successful or not, in a boolean value
-**ConsignmentRef** | String | | The consignment reference generated from the import
+**ConsignmentRef** | String | Yes | The consignment reference generated from the import
 **TrackingNo** | String | | The tracking number generated for the imported item
 **Errors** | String | Yes | This is an aggregate type of error messages in case the shipment failed
 **LabelURL** | String | | The URL associated to the import, showing the label generated (not needed if ``RawLabelData`` is provided). If HTML is provided, an encoding of ``UTF-16LE`` is required.
