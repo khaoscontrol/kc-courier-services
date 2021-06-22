@@ -108,7 +108,7 @@ Name | Type | Required | Description
 **ManufCountry** | String | | This is the manufacturer's country name
 **ManufCountryCode2** | String | | This is the country code for the manufacturer in ISO 3116-2 format
 **ManufCountryCode3** | String | | This is the country code for the manufacturer in ISO 3116-3 format
-**IntrastatCode** | String | | This is the Invoice ID associated to the item
+**IntrastatCode** | String | | This is the ICN Code associated to the item
 **HarmonisationCode** | String | | This is the Harmonisation Code defined within Khaos Control (see https://en.wikipedia.org/wiki/Harmonized_System)
 **HarmonisationDesc** | string | | This is the Harmonisation Description defined within Khaos Control (see https://en.wikipedia.org/wiki/Harmonized_System)
 **ImportRef** | String | | This is a unique import reference generated within Khaos Control
@@ -148,7 +148,7 @@ Name | Type | Required | Description
 **StockType** | String | | This is the category/type of the item
 **ManufCountryCode2** | String | | This is the country code of the manufacturer in an ISO 3166-2 format
 **ManufCountryCode3** | String | | This is the country code of the manufacturer in an ISO 3166-3 format
-**IntrastatCode** | String | | This is the invoice ID associated to the item
+**IntrastatCode** | String | | This is the ICN Code associated to the item
 **HarmonisationCode** | String | | This is the Harmonisation code that identifies uniquely a box item (see https://en.wikipedia.org/wiki/Harmonized_System)
 **HarmonisationDescription** | String | | This is the Harmonisation description that uniquely identifies a box item (see https://en.wikipedia.org/wiki/Harmonized_System)
 **Weight** | Double | | This is the calculated weight of the item
